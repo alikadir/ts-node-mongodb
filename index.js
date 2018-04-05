@@ -27,16 +27,13 @@ app.get('/mongo', function (req, res) {
         });
     });
 });
-app.get('/mongo/:query', function (req, res) {
+app.get('/mongo/:id', function (req, res) {
     mongodb_1.MongoClient.connect('mongodb://Genel:1453@ds041563.mlab.com:41563/sozluk').then(function (client) {
         var db = client.db('sozluk');
-        var query = JSON.parse(req.params.query);
-        console.log(query);
-        debugger;
-        db.collection('users').find(query).toArray().then(function (list) {
+        db.collection('users').find({ _id: req.params.id }).toArray().then(function (list) {
             res.send(list);
         });
     });
 });
+app.post;
 app.listen(process.env.PORT || 1453, function () { return console.log('server basladi'); });
-//# sourceMappingURL=index.js.map

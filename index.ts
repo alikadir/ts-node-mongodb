@@ -28,22 +28,27 @@ app.post('/user', (req, res) => {
 })
 
 app.get('/mongo', (req, res) => {
-
     MongoClient.connect('mongodb://Genel:1453@ds041563.mlab.com:41563/sozluk').then((client) => {
-
         let db = client.db('sozluk');
         db.collection('users').find({}).toArray().then(list => {
             res.send(list);
         });
     });
-    /*
-    let cc =  await MongoClient.connect('mongodb://Genel:1453@ds041563.mlab.com:41563');
-    let ddb = cc.db('sozluk');
+});
+app.get('/mongo/:query', (req, res) => {
 
-    ddb.col
-*/
+    MongoClient.connect('mongodb://Genel:1453@ds041563.mlab.com:41563/sozluk').then((client) => {
+        let db = client.db('sozluk');
+        let query = JSON.parse(req.params.query);
+        console.log(query);
+debugger
+        db.collection('users').find(query).toArray().then(list => {
+            res.send(list);
+        });
+    });
 
 });
+
 
 
 
