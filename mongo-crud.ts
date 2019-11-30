@@ -7,7 +7,7 @@ export class MongoCrud {
     private db?: Db;
     private collectionName: string = 'myUsers';
     private dbName: string = 'sozluk';
-    private connectionString: string = 'mongodb://Genel:1453@ds041563.mlab.com:41563/sozluk';
+    private connectionString: string = 'mongodb://ds041563.mlab.com:41563/sozluk';
 
     constructor() {
         this.connect();
